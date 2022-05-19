@@ -74,7 +74,7 @@ public class Emene : MonoBehaviour
             
             int x = UnityEngine.Random.Range(-5, 5);
             int z = UnityEngine.Random.Range(0, 5);
-            Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+           // Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
             Destroy(gameObject);
         }
     }
