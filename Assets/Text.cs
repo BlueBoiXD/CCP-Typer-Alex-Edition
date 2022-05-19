@@ -13,9 +13,15 @@ public class Text : MonoBehaviour
     private int z;
     public GameObject emenePrefab;
 
+    private int speed = 5;
+    private float step;
+    private Vector3 target;
+
+    public Vector3 pos;
     // Start is called before the first frame update
     void Start()
     {
+        target = transform.position;
         for (int i = 0; i < 4; i++)
         {
             x = UnityEngine.Random.Range(-5, 5);
@@ -27,31 +33,44 @@ public class Text : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        pos = transform.position;
+
         Debug.Log(level);
         string currentText = Input.inputString.ToLower();
 
         Emene[] emene = GameObject.FindObjectsOfType<Emene>();
 
+        step = speed * Time.deltaTime;
+
         if (emene.Length == 0)
-        {
-            level += 1;
+        { 
             switch (level)
             {
-                case 2:
-                    for (int newSpawn = 0;  newSpawn < 4; newSpawn ++)
-                    {  
-                        x = UnityEngine.Random.Range(-5, 5);
-                        z = UnityEngine.Random.Range(10, 15);
-                        Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+                case 1:
+                    target = new Vector3(0.0f, 1.2f, 9.0f);
+                    if ((transform.position - target).sqrMagnitude > 1)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, target, step);
+                    } else
+                    {
+                        for (int newSpawn = 0;  newSpawn < 4; newSpawn ++)
+                        {  
+                            x = UnityEngine.Random.Range(-5, 5);
+                            z = UnityEngine.Random.Range(10, 15);
+                            Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+                        }  
+                        level += 1;
                     }
+                   
                     break;
-                case 3:
+                case 2:
                     for (int newSpawn = 0; newSpawn < 4; newSpawn++)
                     {
                         x = UnityEngine.Random.Range(-5, 5);
                         z = UnityEngine.Random.Range(20, 25);
                         Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
                     }
+                    level += 1;
                     break;
                 default:
                     Debug.Log("kek");

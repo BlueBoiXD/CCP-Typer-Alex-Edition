@@ -5,7 +5,7 @@ using UnityEngine;
 public class Location : MonoBehaviour
 {
 
-    public Vector3 pos;
+    //public Vector3 pos;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,6 @@ public class Location : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = transform.position;
+        //pos = transform.position;
     }
 }

@@ -11,7 +11,7 @@ public class Emene : MonoBehaviour
     private Vector3 target;
 
     public GameObject player;
-    public Location location;
+    public Text location;
 
     public GameObject emenePrefab;
 
@@ -44,7 +44,7 @@ public class Emene : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        location = player.GetComponent<Location>();
+        location = player.GetComponent<Text>();
         displayText = words[UnityEngine.Random.Range(0, words.Length)];
 
         if (!tm) tm = GetComponent<TextMeshPro>();
