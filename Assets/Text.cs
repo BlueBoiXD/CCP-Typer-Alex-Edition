@@ -16,6 +16,9 @@ public class Text : MonoBehaviour
     private int speed = 5;
     private float step;
     private Vector3 target;
+    private Vector3 target2;
+    private Vector3 targetDirection;
+    private Vector3 newDirection;
 
     public Vector3 pos;
     // Start is called before the first frame update
@@ -47,16 +50,24 @@ public class Text : MonoBehaviour
             switch (level)
             {
                 case 1:
-                    target = new Vector3(0.0f, 1.2f, 9.0f);
-                    if ((transform.position - target).sqrMagnitude > 1)
+                    target = new Vector3(0.0f, 1.2f, 20.0f);
+                    target2 = new Vector3(12.5f, 1.2f, 20f);
+                    targetDirection = target2 - transform.position;
+                    targetDirection.y = 0;
+                    newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
+                    if ((transform.position - target).sqrMagnitude > 0.5)
                     {
                         transform.position = Vector3.MoveTowards(transform.position, target, step);
+                        
+                    } else if (newDirection != targetDirection)
+                    {
+                        transform.rotation = Quaternion.LookRotation(newDirection);
                     } else
                     {
                         for (int newSpawn = 0;  newSpawn < 4; newSpawn ++)
                         {  
-                            x = UnityEngine.Random.Range(-5, 5);
-                            z = UnityEngine.Random.Range(10, 15);
+                            x = UnityEngine.Random.Range(10, 15);
+                            z = UnityEngine.Random.Range(15, 25);
                             Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
                         }  
                         level += 1;
