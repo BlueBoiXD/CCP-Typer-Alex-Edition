@@ -20,6 +20,7 @@ public class Text : MonoBehaviour
     private Vector3 target2;
     private Vector3 targetDirection;
     private Vector3 newDirection;
+    private Quaternion finalLook;
 
     public Vector3 pos;
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class Text : MonoBehaviour
     {
         pos = transform.position;
 
-        Debug.Log(level);
+      //  Debug.Log(level);
         string currentText = Input.inputString.ToLower();
 
         Emene[] emene = GameObject.FindObjectsOfType<Emene>();
@@ -55,12 +56,13 @@ public class Text : MonoBehaviour
                     target2 = new Vector3(12.5f, 1.2f, 25f);
                     targetDirection = target2 - transform.position;
                     targetDirection.y = 0;
+                    finalLook = Quaternion.LookRotation(targetDirection);
                     newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
                     if ((transform.position - target).sqrMagnitude > 1)
                     {
                         transform.position = Vector3.MoveTowards(transform.position, target, step);
 
-                    } else if (newDirection != targetDirection)
+                    } else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
                     {
                         transform.rotation = Quaternion.LookRotation(newDirection);
                     } else
@@ -70,7 +72,7 @@ public class Text : MonoBehaviour
                             x = UnityEngine.Random.Range(20, 30);
                             z = UnityEngine.Random.Range(20, 30);
                             Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
-                            Debug.Log("kek");
+                           // Debug.Log("kek");
                         }
                         level += 1;
                     }
@@ -81,13 +83,14 @@ public class Text : MonoBehaviour
                     target2 = new Vector3(25.0f, 1.2f, 50f);
                     targetDirection = target2 - transform.position;
                     targetDirection.y = 0;
+                    finalLook = Quaternion.LookRotation(targetDirection);
                     newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
                     if ((transform.position - target).sqrMagnitude > 1)
                     {
                         transform.position = Vector3.MoveTowards(transform.position, target, step);
 
                     }
-                    else if (newDirection != targetDirection)
+                    else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
                     {
                         transform.rotation = Quaternion.LookRotation(newDirection);
                     }
@@ -102,7 +105,7 @@ public class Text : MonoBehaviour
                     level += 1;
                     break;
                 default:
-                    Debug.Log("kek");
+                   // Debug.Log("kek");
                     break;
             }
             return;

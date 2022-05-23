@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Emene : MonoBehaviour
 {
-    private int speed = 5;
+    private int speed = 4;
     private float step;
     private Vector3 target;
 
@@ -85,6 +85,14 @@ public class Emene : MonoBehaviour
         target = location.pos;
         
         transform.position = Vector3.MoveTowards(transform.position, target, step);
+
+        transform.LookAt(location.transform);
+        Vector3 eul = transform.rotation.eulerAngles;
+        eul.x = 0;
+        eul.z = 0;
+        eul.y += 180;
+        transform.eulerAngles = eul;
+       // Debug.Log(lookDirection.eulerAngles);
 
         if (ttl > 0f) {
             tm.color = Color.Lerp(Color.white, Color.red, (Time.time - startt) / ttl);
