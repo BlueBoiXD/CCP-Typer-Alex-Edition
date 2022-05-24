@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public struct LevelData {
+    public Vector3 playerPos;
+    public Vector3 playerDir;
+    public Vector3 enemyPos;
+    public float enemyRange;
+    public int enemyNum;
+}
+
 public class Text : MonoBehaviour
 {
     private Emene current = null;
     
-    public int level = 1;
+    public LevelData[] levels;
+    public int level = 0;
     private int newSpawn = 0;
     
     private int x;
@@ -27,20 +37,20 @@ public class Text : MonoBehaviour
     void Start()
     {
         target = transform.position;
-        for (int i = 0; i < 4; i++)
-        {
-            x = UnityEngine.Random.Range(-5, 5);
-            z = UnityEngine.Random.Range(20, 30);
-            Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
-        }
+        // for (int i = 0; i < 4; i++)
+        // {
+        //     x = UnityEngine.Random.Range(-5, 5);
+        //     z = UnityEngine.Random.Range(20, 30);
+        //     Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+        // }
     }
 
     // Update is called once per frame
     void Update()
     {
         pos = transform.position;
-
-      //  Debug.Log(level);
+       // Debug.Log(level);
+        
         string currentText = Input.inputString.ToLower();
 
         Emene[] emene = GameObject.FindObjectsOfType<Emene>();
@@ -49,68 +59,41 @@ public class Text : MonoBehaviour
 
         if (emene.Length == 0)
         {
-            switch (level)
+            if(level < levels.Length)
             {
-                case 1:
-                    target = new Vector3(0.0f, 1.2f, 26.0f);
-                    target2 = new Vector3(12.5f, 1.2f, 25f);
-                    targetDirection = target2 - transform.position;
-                    targetDirection.y = 0;
-                    finalLook = Quaternion.LookRotation(targetDirection);
-                    newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
-                    if ((transform.position - target).sqrMagnitude > 1)
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, target, step);
+                target = levels[level].playerPos;
+                target2 = levels[level].playerDir;
+                targetDirection = target2 - transform.position;
+                targetDirection.y = 0;
+                finalLook = Quaternion.LookRotation(targetDirection);
+                newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
 
-                    } else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
-                    {
-                        transform.rotation = Quaternion.LookRotation(newDirection);
-                    } else
-                    {
-                        for (newSpawn = 0; newSpawn < 4; newSpawn++)
-                        {
-                            x = UnityEngine.Random.Range(20, 30);
-                            z = UnityEngine.Random.Range(20, 30);
-                            Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
-                           // Debug.Log("kek");
-                        }
-                        level += 1;
-                    }
+                if ((transform.position - target).sqrMagnitude > 1)
+                {
 
-                    break;
-                case 2:
-                    target = new Vector3(26.0f, 1.2f, 25.0f);
-                    target2 = new Vector3(25.0f, 1.2f, 50f);
-                    targetDirection = target2 - transform.position;
-                    targetDirection.y = 0;
-                    finalLook = Quaternion.LookRotation(targetDirection);
-                    newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
-                    if ((transform.position - target).sqrMagnitude > 1)
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, target, step);
+                    transform.position = Vector3.MoveTowards(transform.position, target, step);
 
-                    }
-                    else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
+                } else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
+                {
+                    transform.rotation = Quaternion.LookRotation(newDirection);
+                } else
+                {
+                    for (newSpawn = 0; newSpawn < levels[level].enemyNum; newSpawn++)
                     {
-                        transform.rotation = Quaternion.LookRotation(newDirection);
+                        Debug.Log("e");
+                        Vector3 ep = levels[level].enemyPos;
+                        ep.x += (UnityEngine.Random.value * 2 - 1) * levels[level].enemyRange;
+                        ep.z += (UnityEngine.Random.value * 2 - 1) * levels[level].enemyRange;
+                        Instantiate(emenePrefab, ep, Quaternion.identity);
                     }
-                    else {
-                        for (newSpawn = 0; newSpawn < 4; newSpawn++)
-                        {
-                            x = UnityEngine.Random.Range(20, 30);
-                            z = UnityEngine.Random.Range(45, 55);
-                            Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
-                        } 
-                    }    
                     level += 1;
-                    break;
-                default:
-                   // Debug.Log("kek");
-                    break;
+                }
+            } else
+            {
+                Debug.Log("kek");
             }
-            return;
-        }
-        
+            
+    }
         while (currentText.Length > 0)
         {
             Emene bestMatch = current;

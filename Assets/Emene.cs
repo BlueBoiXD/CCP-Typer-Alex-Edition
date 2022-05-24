@@ -68,7 +68,6 @@ public class Emene : MonoBehaviour
     }
 
     void TypeUpdate(int prev) {
-        Debug.Log(remainingProgress);
         tm.text = remainingDisplayText;
         if (remainingProgress <= 0) {
             
