@@ -110,7 +110,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -289,9 +289,17 @@ MonoBehaviour:
   location: {fileID: 0}
   emenePrefab: {fileID: 5392725517535783174}
   words:
-  - hello
-  - egg
-  - moist
+  - Tiananmen
+  - Taiwan
+  - People's republic
+  - Socialism good
+  - Democracy bad
+  - Winnie the Pooh
+  - 1989
+  - June 4
+  - Peng Shuai
+  - Censorship
+  - Great Firewall
   displayText: 
   ttl: 0
   tm: {fileID: 5392725516685532303}

@@ -1186,5 +1186,9 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5392725517535783175, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
+      propertyPath: words.Array.data[1]
+      value: ROC
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
