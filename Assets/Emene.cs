@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Emene : MonoBehaviour
 {
-    private int speed = 3;
+    private int speed = 2;
     private float step;
     private Vector3 target;
 

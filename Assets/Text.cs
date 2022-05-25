@@ -49,7 +49,6 @@ public class Text : MonoBehaviour
     void Update()
     {
         pos = transform.position;
-       // Debug.Log(level);
         
         string currentText = Input.inputString.ToLower();
 
@@ -72,15 +71,16 @@ public class Text : MonoBehaviour
                 {
 
                     transform.position = Vector3.MoveTowards(transform.position, target, step);
+                    Debug.Log("kek");
 
                 } else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
                 {
                     transform.rotation = Quaternion.LookRotation(newDirection);
+                    Debug.Log("hek");
                 } else
                 {
                     for (newSpawn = 0; newSpawn < levels[level].enemyNum; newSpawn++)
                     {
-                        Debug.Log("e");
                         Vector3 ep = levels[level].enemyPos;
                         ep.x += (UnityEngine.Random.value * 2 - 1) * levels[level].enemyRange;
                         ep.z += (UnityEngine.Random.value * 2 - 1) * levels[level].enemyRange;
