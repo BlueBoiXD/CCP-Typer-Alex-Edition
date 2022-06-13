@@ -23,6 +23,7 @@ public class Text : MonoBehaviour
     private int x;
     private int z;
     public GameObject emenePrefab;
+    public GameObject bossPrefab;
 
     private int speed = 5;
     private float step;
@@ -37,12 +38,6 @@ public class Text : MonoBehaviour
     void Start()
     {
         target = transform.position;
-        // for (int i = 0; i < 4; i++)
-        // {
-        //     x = UnityEngine.Random.Range(-5, 5);
-        //     z = UnityEngine.Random.Range(20, 30);
-        //     Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
-        // }
     }
 
     // Update is called once per frame
@@ -53,6 +48,7 @@ public class Text : MonoBehaviour
         string currentText = Input.inputString.ToLower();
 
         Emene[] emene = GameObject.FindObjectsOfType<Emene>();
+        Boss[] boss = GameObject.FindObjectsOfType<Boss>();
 
         step = speed * Time.deltaTime;
 
@@ -90,7 +86,11 @@ public class Text : MonoBehaviour
                 }
             } else
             {
-                Debug.Log("kek");
+                if (level == 4)
+                {
+                    Instantiate(bossPrefab, new Vector3(-25f, 5.5f, 75f), Quaternion.identity);
+                    level += 1;
+                }
             }
             
     }
