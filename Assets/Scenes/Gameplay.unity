@@ -178,8 +178,9 @@ MonoBehaviour:
     enemyRange: 5
     enemyNum: 4
   level: 0
+  isBoss: 0
   emenePrefab: {fileID: 5392725517535783174, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
-  bossPrefab: {fileID: 2878236323568214238, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
+  bossPrefab: {fileID: 2138430510530178249, guid: c5f84211fd895ad44b9f2042ee382894, type: 3}
   pos: {x: 0, y: 0, z: 0}
 --- !u!136 &81686319
 CapsuleCollider:
@@ -1141,6 +1142,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5392725516685532303, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5392725517535783171, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -19,7 +19,7 @@ public class Text : MonoBehaviour
     public LevelData[] levels;
     public int level = 0;
     private int newSpawn = 0;
-    
+
     private int x;
     private int z;
     public GameObject emenePrefab;
@@ -48,7 +48,6 @@ public class Text : MonoBehaviour
         string currentText = Input.inputString.ToLower();
 
         Emene[] emene = GameObject.FindObjectsOfType<Emene>();
-        Boss[] boss = GameObject.FindObjectsOfType<Boss>();
 
         step = speed * Time.deltaTime;
 
@@ -86,8 +85,9 @@ public class Text : MonoBehaviour
                 }
             } else
             {
-                if (level == 4)
+                if (level <= 4)
                 {
+                    speed = 2;
                     Instantiate(bossPrefab, new Vector3(-25f, 5.5f, 75f), Quaternion.identity);
                     level += 1;
                 }
