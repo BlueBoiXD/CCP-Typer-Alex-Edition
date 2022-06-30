@@ -178,9 +178,9 @@ MonoBehaviour:
     enemyRange: 5
     enemyNum: 4
   level: 0
-  isBoss: 0
   emenePrefab: {fileID: 5392725517535783174, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
   bossPrefab: {fileID: 2138430510530178249, guid: c5f84211fd895ad44b9f2042ee382894, type: 3}
+  enemSpeed: 2
   pos: {x: 0, y: 0, z: 0}
 --- !u!136 &81686319
 CapsuleCollider:
@@ -1204,68 +1204,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03736f81f2d7b6e4aa65cd406b7d223c, type: 3}
---- !u!1001 &8276893997385452570
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2878236323568214238, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_Name
-      value: Xi Jinping
-      objectReference: {fileID: 0}
-    - target: {fileID: 2878236323568214238, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4787112260498401242, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: bossPrefab
-      value: 
-      objectReference: {fileID: 2878236323568214238, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7919576288503783979, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ea9294f8e27483b4d9911fa0f7d95306, type: 3}

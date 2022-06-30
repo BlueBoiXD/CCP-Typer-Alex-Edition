@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class Emene : MonoBehaviour
 {
-    private int speed = 2;
-    private float step;
-    private Vector3 target;
+    private int speed = 2; //The variable for the movement speed
+    private float step; //The variable for the movement speed + game time
+    private Vector3 target; //The variable for the location to move to
 
-    public GameObject player;
-    public Text location;
+    public GameObject player; //The variable for the player game object
+    public Text location; //The variable for the text script
 
-    public GameObject emenePrefab;
+    public GameObject emenePrefab; //The variable for the enemy prefab
 
-    public string[] words = new string[3]{"hello", "egg", "moist"};
+    public string[] words = new string[3]{"hello", "egg", "moist"}; //the array to store all the words and enemy can have
 
      // Entire text to type out
     public string displayText;
@@ -80,18 +80,18 @@ public class Emene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        step = speed * Time.deltaTime;
-        target = location.pos;
+        speed = location.enemSpeed;
+        step = speed * Time.deltaTime;  //Sets the movement speed and locks it to the game time
+        target = location.pos; //Sets the coordinates of the player as the target
         
-        transform.position = Vector3.MoveTowards(transform.position, target, step);
+        transform.position = Vector3.MoveTowards(transform.position, target, step); //Code for the movement
 
-        transform.LookAt(location.transform);
+        transform.LookAt(location.transform); //Sets the direction for the enemy to look at
         Vector3 eul = transform.rotation.eulerAngles;
-        eul.x = 0;
-        eul.z = 0;
+        eul.x = 0; //Locks the X rotation
+        eul.z = 0; //Locks the Y rotation
         eul.y += 180;
-        transform.eulerAngles = eul;
-       // Debug.Log(lookDirection.eulerAngles);
+        transform.eulerAngles = eul; //Sets the rotation
 
         if (ttl > 0f) {
             tm.color = Color.Lerp(Color.white, Color.red, (Time.time - startt) / ttl);
