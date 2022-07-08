@@ -36,6 +36,7 @@ public class Text : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
         target = transform.position; //setting the first position for the player to be at
     }
 
@@ -71,6 +72,7 @@ public class Text : MonoBehaviour
                 {
                     for (newSpawn = 0; newSpawn < levels[level].enemyNum; newSpawn++)
                     {
+                        Debug.Log(level);
                         //the code for setting the enemy spawn positions
                         Vector3 ep = levels[level].enemyPos; //Sets a Vector position
                         ep.x += (UnityEngine.Random.value * 2 - 1) * levels[level].enemyRange; //picks a random range from the x coordinate to allow for spawning in random locations
