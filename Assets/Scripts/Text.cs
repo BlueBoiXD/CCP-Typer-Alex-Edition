@@ -18,6 +18,7 @@ public class Text : MonoBehaviour
     
     public LevelData[] levels; //The array for the level data
     public int level = 0; //The variable for the current level
+    public int bossLevel;
     private int newSpawn = 0; //The variable for the number of enemies that have been spawned
 
     public GameObject emenePrefab; //The variable for the enemy prefab game object
@@ -87,7 +88,7 @@ public class Text : MonoBehaviour
                 enemSpeed = 1;
                 Instantiate(bossPrefab, new Vector3(-25f, 5.5f, 75f), Quaternion.identity); //creates a boss from a prefab
                 level += 1; //adds 1 to the level variable
-            } else if (level == 5)
+            } else if (level == bossLevel)
             {
                 SceneManager.LoadScene("You Win");
             }

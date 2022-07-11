@@ -13,6 +13,9 @@ public class Emene : MonoBehaviour
     public GameObject player; //The variable for the player game object
     public Text location; //The variable for the text script
 
+    public GameObject gun;
+    public AudioSource gunShot;
+
     public GameObject emenePrefab; //The variable for the enemy prefab
 
     public string[] words = new string[3]{"hello", "egg", "moist"}; //the array to store all the words and enemy can have
@@ -45,6 +48,8 @@ public class Emene : MonoBehaviour
     {
         player = GameObject.Find("Player");
         location = player.GetComponent<Text>();
+        gun = GameObject.Find("Gun");
+        gunShot = gun.GetComponent<AudioSource>();
         displayText = words[UnityEngine.Random.Range(0, words.Length)];
 
         if (!tm) tm = GetComponent<TextMeshPro>();
@@ -73,7 +78,8 @@ public class Emene : MonoBehaviour
             
             int x = UnityEngine.Random.Range(-5, 5);
             int z = UnityEngine.Random.Range(0, 5);
-           // Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+            // Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+            gunShot.Play();
             Destroy(gameObject);
         }
     }
