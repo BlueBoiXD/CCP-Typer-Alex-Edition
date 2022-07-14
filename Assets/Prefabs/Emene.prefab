@@ -287,6 +287,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   location: {fileID: 0}
+  gun: {fileID: 0}
+  gunShot: {fileID: 0}
+  particleSystem: {fileID: 0}
+  muzzleFlash: {fileID: 0}
   emenePrefab: {fileID: 5392725517535783174}
   words:
   - China

@@ -19,10 +19,13 @@ public class Text : MonoBehaviour
     public LevelData[] levels; //The array for the level data
     public int level = 0; //The variable for the current level
     public int bossLevel;
+    public int endLevel;
     private int newSpawn = 0; //The variable for the number of enemies that have been spawned
 
     public GameObject emenePrefab; //The variable for the enemy prefab game object
     public GameObject bossPrefab; //The variable for the boss prefab game object
+
+    public AudioSource footStep;
 
     private int speed = 5; //The variable for the player movement speed
     public int enemSpeed = 2; //The variable for the enemy movement speed
@@ -39,6 +42,7 @@ public class Text : MonoBehaviour
     {
         Cursor.visible = false;
         target = transform.position; //setting the first position for the player to be at
+        footStep = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -66,8 +70,16 @@ public class Text : MonoBehaviour
                 if ((transform.position - target).sqrMagnitude > 1)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, target, step); //the code for player movement
+                    if (!footStep.isPlaying)
+                    {
+                        footStep.Play();
+                    }
                 } else if ((transform.rotation.eulerAngles - finalLook.eulerAngles).sqrMagnitude > 1)
                 {
+                    if (footStep.isPlaying)
+                    {
+                        footStep.Stop();
+                    }
                     transform.rotation = Quaternion.LookRotation(newDirection); //the code for player rotation
                 } else
                 {
@@ -82,13 +94,13 @@ public class Text : MonoBehaviour
                     }
                     level += 1; //adds 1 to the level variable
                 }
-            } else if (level == 4)
+            } else if (level == bossLevel)
             {
                 //the code for spawning the boss
                 enemSpeed = 1;
                 Instantiate(bossPrefab, new Vector3(-25f, 5.5f, 75f), Quaternion.identity); //creates a boss from a prefab
                 level += 1; //adds 1 to the level variable
-            } else if (level == bossLevel)
+            } else if (level == endLevel)
             {
                 SceneManager.LoadScene("You Win");
             }
@@ -126,6 +138,7 @@ public class Text : MonoBehaviour
             }
         }  
     }
+
     //function for the gameover upon getting hit by an enemy
     void OnCollisionEnter (Collision hit)
     {

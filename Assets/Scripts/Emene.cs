@@ -15,6 +15,8 @@ public class Emene : MonoBehaviour
 
     public GameObject gun;
     public AudioSource gunShot;
+    public GameObject particleSystem;
+    public ParticleSystem muzzleFlash;
 
     public GameObject emenePrefab; //The variable for the enemy prefab
 
@@ -50,6 +52,8 @@ public class Emene : MonoBehaviour
         location = player.GetComponent<Text>();
         gun = GameObject.Find("Gun");
         gunShot = gun.GetComponent<AudioSource>();
+        particleSystem = GameObject.Find("MuzzleFlash");
+        muzzleFlash = particleSystem.GetComponent<ParticleSystem>();
         displayText = words[UnityEngine.Random.Range(0, words.Length)];
 
         if (!tm) tm = GetComponent<TextMeshPro>();
@@ -79,6 +83,7 @@ public class Emene : MonoBehaviour
             int x = UnityEngine.Random.Range(-5, 5);
             int z = UnityEngine.Random.Range(0, 5);
             // Instantiate(emenePrefab, new Vector3(x, 1, z), Quaternion.identity);
+            muzzleFlash.Play();
             gunShot.Play();
             Destroy(gameObject);
         }
